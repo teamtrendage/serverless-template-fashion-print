@@ -1,17 +1,23 @@
 # In this file, we define load_model
 # It runs once at server startup to load the model to a GPU
 
-# In this example: A Huggingface BERT model
+import os
+import sys
 
-from transformers import pipeline
+file_path = os.path.abspath(__file__)
+dirpath = os.path.dirname(file_path)
+dirpath = os.path.dirname(dirpath)
+sys.path.append(dirpath)
 
-def load_model():
+from models.fashion_inpaint import FashionInpaint
 
-    # load the model from cache or local file to the CPU
-    model = pipeline('fill-mask', model='bert-base-uncased', device=0)
+def load_model(device):
+
+    # load the model from cache or local file to the CPU    
+    fashion_model = FashionInpaint(device=device)
 
     # transfer the model to the GPU
     # N/A for this example, it's already on the GPU
 
     # return the callable model
-    return model
+    return fashion_model

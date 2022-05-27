@@ -1,17 +1,21 @@
 # In this file, we define run_model
 # It runs every time the server is called
 
-# In this example: A Huggingface BERT model
+import cv2
 
-def run_model(model, prompt):
+
+def run_model(model, img, threshold, padding):
 
     # do preprocessing
     # N/A for this example
 
     # run the model
-    result = model(prompt)
+    inpainted_img, mask, bbox_img = model(img, threshold=threshold, padding=padding)
 
     # do postprocessing
-    # N/A for this example
 
-    return result
+    inpainted_img = cv2.cvtColor(inpainted_img, cv2.COLOR_RGB2BGR)
+    # inpainted_img = cv2.cvtColor(inpainted_img, cv2.COLOR_RGB2BGR)
+    bbox_img = cv2.cvtColor(bbox_img, cv2.COLOR_RGB2BGR)
+
+    return inpainted_img, bbox_img

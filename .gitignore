@@ -127,3 +127,20 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+lama/*masks
+lama/output*
+lama/single_output
+lama/big-lama
+lama/fashion_test_imgs
+lama/lama-models
+lama/LaMa_test_images
+lama/outputs
+detr/checkpoints
+detr/data
+data/*
+env
+outputs
+*.zip
+! lama/saicinpainting
+*.pyc
+test_imgs/
