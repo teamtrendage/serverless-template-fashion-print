@@ -1,13 +1,15 @@
 # In this file, we define load_model
 # It runs once at server startup to load the model to a GPU
 
-# In this example: A Huggingface BERT model
 import os
 import sys
 
-sys.path.append('/home/umair/Desktop/AxelerateAI/fashion-print-inpainting/models')
+file_path = os.path.abspath(__file__)
+dirpath = os.path.dirname(file_path)
+dirpath = os.path.dirname(dirpath)
+sys.path.append(dirpath)
 
-from fashion_inpaint import FashionInpaint
+from models.fashion_inpaint import FashionInpaint
 
 def load_model(device):
 
