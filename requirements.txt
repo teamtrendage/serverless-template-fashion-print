@@ -27,6 +27,7 @@ google-auth==2.6.6
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
 grpcio==1.46.0
+gdown
 h5py==3.6.0
 huggingface-hub==0.6.0
 hydra-core==1.1.0
