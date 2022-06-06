@@ -32,7 +32,7 @@ def healthcheck(request):
 
 # route http posts to this method
 @app.route('/', methods=['POST'])
-def inference():
+def inference(request):
     r = request
     # Reading request json 
     req = json.loads(r.json)
