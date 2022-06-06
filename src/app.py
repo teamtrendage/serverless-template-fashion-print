@@ -31,8 +31,8 @@ def healthcheck(request):
 
 
 # route http posts to this method
-@app.route('/api/test', methods=['POST'])
-def test():
+@app.route('/', methods=['POST'])
+def inference():
     r = request
     # Reading request json 
     req = json.loads(r.json)
