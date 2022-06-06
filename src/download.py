@@ -14,13 +14,13 @@ def download_model():
     lama_url = '1BXg36NmgK3fafLfudQ2MKaH9g56_0HKu'
     detr_url = '1PEMktjhDikSkCgxGd8LvdFQkmEl4YzIe'
     
-    # print('Downloading Weights 1.....')
-    # url = f'https://drive.google.com/uc?id={lama_url}'
-    # gdown.download(url,'./downloaded_data/', quiet=False)  
+    print('Downloading Weights 1.....')
+    url = f'https://drive.google.com/uc?id={lama_url}'
+    gdown.download(url,'./downloaded_data/', quiet=False)  
     
-    # print('Downloading Weights 2.....')
-    # url = f'https://drive.google.com/uc?id={detr_url}'
-    # gdown.download(url,'./downloaded_data/', quiet=False)  
+    print('Downloading Weights 2.....')
+    url = f'https://drive.google.com/uc?id={detr_url}'
+    gdown.download(url,'./downloaded_data/', quiet=False)  
     
     print('Download Completed Successfully!')
 
