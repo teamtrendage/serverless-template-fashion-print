@@ -7,7 +7,9 @@ RUN rm /etc/apt/sources.list.d/cuda.list
 RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 
 # Install git
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git \
+            libgtk2.0-dev libgl1
+
 
 # Install python packages
 RUN pip3 install --upgrade pip
@@ -21,6 +23,8 @@ ADD src/download.py .
 RUN python3 download.py
 
 ADD src/ .
+
+ADD . .
 
 EXPOSE 8000
 

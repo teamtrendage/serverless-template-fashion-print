@@ -27,7 +27,7 @@ app = Flask(__name__)
 
 @app.route('/healthcheck', methods=["GET"])
 def healthcheck(request):
-    return json.dumps({"state": "healthy"})
+    return jsonify({"state": "healthy"})
 
 
 # route http posts to this method
@@ -61,7 +61,7 @@ def inference():
     
     enc_inpaint = base64.b64encode(inpainted_img).decode('utf-8')
     enc_bbox_img = base64.b64encode(bbox_img).decode('utf-8')
-    return json.dumps({
+    return jsonify({
                 'msg': 'success', 
                 'size': [w, h], 
                 'format': "PNG",
