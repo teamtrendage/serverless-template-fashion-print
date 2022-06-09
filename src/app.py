@@ -26,7 +26,8 @@ app = Flask(__name__)
 
 
 @app.route('/healthcheck', methods=["GET"])
-def healthcheck(request):
+def healthcheck():
+    r = request
     return jsonify({"state": "healthy"})
 
 
