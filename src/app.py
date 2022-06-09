@@ -13,7 +13,7 @@ from run import run_model
 
 # do the warmup step globally, to have a reuseable model instance
 print('Loading Model....')
-device = 'cpu'
+device = 'cuda'
 model = load_model(device)
 print('Model Loaded!')
 

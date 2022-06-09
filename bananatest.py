@@ -28,10 +28,13 @@ def main(args, api_key, model_key):
         'padding': padding.decode('utf-8'),
     }    
     print("Waiting for Server Response....")
-    response = banana.run(api_key, model_key, model_inputs)
+    tic = time.time()
+    response = banana.run(api_key, model_key, json.dumps(model_inputs))
     print("Done.")
-    response = json.loads(response.text)
-
+    toc = time.time()
+    print(f"Time taken to run API {toc-tic:.4f}")
+    response = response.get('modelOutputs')[0]
+    
     w,h = response["size"]
 
     inpainted_img = response["inpainted_img"]
