@@ -4,6 +4,7 @@ import base64
 import json
 import cv2
 import numpy as np
+import time
 
 # python3 bananatest.py test_imgs/zalwomtops-2199-62912004bdcc642871a5a64c60f0b239.png --threshold 0.7 --padding 20
 
@@ -26,7 +27,11 @@ def main(args, api_key, model_key):
         'threshold': threshold.decode('utf-8'),
         'padding': padding.decode('utf-8'),
     }    
+<<<<<<< HEAD
     print("Waiting for Server Response....")
+=======
+    print("Running banana api...")
+>>>>>>> refs/remotes/origin/main
     response = banana.run(api_key, model_key, model_inputs)
     print("Done.")
     response = json.loads(response.text)
@@ -59,5 +64,7 @@ if __name__=="__main__":
     api_key = "777c010a-7781-4e14-be0e-dc84d9d3e2ee" # "YOUR_API_KEY"
     model_key = "822d4fae-4e80-4845-a219-c59794e1d34c" # "YOUR_MODEL_KEY"
 
-    
+    tic = time.time()
     main(args, api_key, model_key)
+    toc = time.time()
+    print(f"Time taken to run API {toc-tic:.4f}")
