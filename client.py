@@ -12,33 +12,36 @@ import requests
 def main(args):
     # prepare headers for http request
     addr = args.addr
-    test_url = addr + '/api/test'
+    test_url = addr + '/'
     threshold = args.threshold
     threshold = str(threshold).encode()
     threshold = base64.b64encode(threshold)
     padding = args.padding
     padding = str(padding).encode()
     padding = base64.b64encode(padding)
-    content_type = 'image/png'
-    headers = {'content-type': content_type, "threshold":threshold,
-                "padding":padding}
-    print(headers)
+ 
     path = args.img_path
     img = cv2.imread(path)
-    # encode image as jpeg
     _, img_encoded = cv2.imencode('.png', img)
+    img_encoded = base64.b64encode(img_encoded).decode()
+
     # send http request with image and receive response
-    # response = requests.post(test_url)
-    response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)
-    # decode response
+    model_inputs = {
+        'data':  img_encoded,
+        'threshold': threshold.decode('utf-8'),
+        'padding': padding.decode('utf-8'),
+    }    
+
+    response = requests.post(test_url, json=json.dumps(model_inputs))
+
     response = json.loads(response.text)
+
     w,h = response["size"]
 
     inpainted_img = response["inpainted_img"]
     inpainted_img = base64.b64decode(inpainted_img)
     inpainted_img = np.frombuffer(inpainted_img, np.uint8)
     inpainted_img = inpainted_img.reshape(h,w,3)
-    inpainted_img = cv2.cvtColor(inpainted_img, cv2.COLOR_RGB2BGR)
 
     cv2.imwrite("received_inpainted.png",inpainted_img)
 
@@ -46,7 +49,6 @@ def main(args):
     bbox_img = base64.b64decode(bbox_img)
     bbox_img = np.frombuffer(bbox_img, np.uint8)
     bbox_img = bbox_img.reshape(h,w,3)
-    bbox_img = cv2.cvtColor(bbox_img, cv2.COLOR_RGB2BGR)
     cv2.imwrite("received_bbox.png",bbox_img)
 
 if __name__=="__main__":
@@ -59,7 +61,7 @@ if __name__=="__main__":
                         default=20)
     parser.add_argument(
         '--addr',type=str,
-        default='http://ec2-3-129-234-103.us-east-2.compute.amazonaws.com:5100',
+        default='http://localhost:8000',
         help="Endpoint")
     args = parser.parse_args()
     main(args)

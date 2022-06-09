@@ -5,6 +5,8 @@ import json
 import cv2
 import numpy as np
 
+# python3 bananatest.py test_imgs/zalwomtops-2199-62912004bdcc642871a5a64c60f0b239.png --threshold 0.7 --padding 20
+
 def main(args, api_key, model_key):
     threshold = args.threshold
     threshold = str(threshold).encode()
@@ -24,9 +26,9 @@ def main(args, api_key, model_key):
         'threshold': threshold.decode('utf-8'),
         'padding': padding.decode('utf-8'),
     }    
-
+    print("Waiting for Server Response....")
     response = banana.run(api_key, model_key, model_inputs)
-    
+    print("Done.")
     response = json.loads(response.text)
 
     w,h = response["size"]
