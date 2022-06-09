@@ -27,11 +27,7 @@ def main(args, api_key, model_key):
         'threshold': threshold.decode('utf-8'),
         'padding': padding.decode('utf-8'),
     }    
-<<<<<<< HEAD
     print("Waiting for Server Response....")
-=======
-    print("Running banana api...")
->>>>>>> refs/remotes/origin/main
     response = banana.run(api_key, model_key, model_inputs)
     print("Done.")
     response = json.loads(response.text)
