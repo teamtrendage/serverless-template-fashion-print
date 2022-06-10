@@ -32,7 +32,7 @@ def main(args, api_key, model_key):
     response = banana.run(api_key, model_key, json.dumps(model_inputs))
     print("Done.")
     toc = time.time()
-    print(f"Time taken to run API {toc-tic:.4f}")
+    print(f"Time taken to run API {toc-tic:.4f} sec(s)")
     response = response.get('modelOutputs')[0]
     
     w,h = response["size"]
@@ -66,4 +66,4 @@ if __name__=="__main__":
     tic = time.time()
     main(args, api_key, model_key)
     toc = time.time()
-    print(f"Time taken to run API {toc-tic:.4f}")
+    print(f"Time taken to run API {toc-tic:.4f} sec(s)")
