@@ -35,3 +35,13 @@ python client.py data/test/imgs/test_img.png --threshold 0.7 --padding 20 --addr
 - padding: Increase in pixel size of bounding boxes
 
 - addr: Address of server i.e http://ec2-3-129-234-103.us-east-2.compute.amazonaws.com:5100
+
+## Test banana API
+1. Install requirements by
+```
+pip install -r requirements_api.txt
+```
+2. Then call the API using
+```
+python bananatest.py IMG_PATH
+```
